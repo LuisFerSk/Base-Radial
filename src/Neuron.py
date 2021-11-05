@@ -1,4 +1,4 @@
-from numpy import linalg, append
+from numpy import linalg, append, ones
 from Funtions import CalculateOutput, LinearError, ActivationFunction, EuclideanDistance, ErrorG
 
 
@@ -18,7 +18,7 @@ class Neuron:
 
         activacion = ActivationFunction(
             funcionActivacion, distanciasEuclidianas)
-        matriz = [[1], [1], [1], [1]]
+        matriz = ones((len(activacion), 1))
         matriz = append(matriz, activacion, axis=1)
         interp = linalg.lstsq(matriz, self.Salidas, rcond=-1)[0]
 

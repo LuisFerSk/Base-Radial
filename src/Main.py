@@ -81,14 +81,6 @@ def Event_btnEntrenar():
 
     btnInicializar['state'] = tk.NORMAL
 
-    if flag:
-        MessageBox.showinfo('EXITO!!!', 'Entrenamiento Exitoso.')
-        filemenu.entryconfig(index="Guardar", state="normal")
-    else:
-        MessageBox.showinfo('ERROR!!!', 'Entrenamiento Fallido.')
-        entNeuronas.insert(0, int(entNeuronas.get()) + 1)
-        entNeuronas.delete(1, tk.END)
-        btnInicializar['state'] = tk.NORMAL
 
 
 def Event_btnGuardar():
