@@ -3,15 +3,16 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-def Graph(frame, data, flag=True):
+def Graph(frame, data, flag=True, ):
     fig = Figure(figsize=(5, 4), dpi=100)
+    axis = fig.add_subplot(111)
 
-    if flag:
-        fig.add_subplot(111).plot([fila[0] for fila in data], 'oy', [
-            fila[1] for fila in data], '*c')
-    else:
-        fig.add_subplot(111).plot(
-            [fila[0] for fila in data], '-y',  [fila[1] for fila in data], '-c')
+    handles = axis.plot([fila[0] for fila in data], 'oy', [fila[1] for fila in data],
+                        '*c') if flag else axis.plot([fila[0] for fila in data], '-y',  [fila[1] for fila in data], '-c')
+
+    labels = ['YD', 'YR'] if flag else ['YD', 'YR']
+
+    fig.legend(handles, labels)
 
     canvas = FigureCanvasTkAgg(fig, master=frame)
     canvas.draw()
