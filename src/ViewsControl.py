@@ -7,11 +7,11 @@ def Graph(frame, data, flag=True):
     fig = Figure(figsize=(5, 4), dpi=100)
 
     if flag:
-        fig.add_subplot(111).plot([fila[0] for fila in data], 'o', [
-            fila[1] for fila in data], '^')
+        fig.add_subplot(111).plot([fila[0] for fila in data], 'oy', [
+            fila[1] for fila in data], '*c')
     else:
         fig.add_subplot(111).plot(
-            [fila[0] for fila in data], '-',  [fila[1] for fila in data], '--')
+            [fila[0] for fila in data], '-y',  [fila[1] for fila in data], '-c')
 
     canvas = FigureCanvasTkAgg(fig, master=frame)
     canvas.draw()
@@ -36,3 +36,8 @@ def Table(treeView, Matriz):
     Matriz_rows1 = Matriz.to_numpy().tolist()
     for row in Matriz_rows1:
         treeView.insert("", "end", values=row)
+
+
+def ClearFrame(frame):
+    for widgets in frame.winfo_children():
+        widgets.destroy()
