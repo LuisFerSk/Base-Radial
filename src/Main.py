@@ -38,8 +38,7 @@ def Event_btnData():
     vc.ClearFrame(frameSimulacionMatriz_1)
     vc.ClearFrame(frameSimulacionMatriz_2)
     vc.ClearFrame(frameSimulacion)
-    vc.ClearFrame(frameEntranamientoTabla)
-    vc.ClearFrame(frameEntranamientoGrafica)
+    vc.ClearFrame(frameEntranamiento)
 
 
 def Event_btnInicializar():
@@ -71,11 +70,7 @@ def Event_btnEntrenar():
     vc.Table(treeView, DataFrame(entrenar.Salidas, columns=[
         'YD' + str(i+1) for i in range(len(entrenar.Salidas[0]))]))
 
-    vc.Graph(frameEntranamientoGrafica, entrenamiento)
-
-    treeView = ttk.Treeview(frameEntranamientoTabla)
-    vc.Grid(treeView, frameEntranamientoTabla)
-    vc.Table(treeView, DataFrame(entrenamiento, columns=['YD', 'YR']))
+    vc.Graph(frameEntranamiento, entrenamiento)
 
     vc.Graph(frameSimulacion, vsErrores, False)
 
@@ -164,14 +159,6 @@ if __name__ == '__main__':
     frameEntranamiento = tk.LabelFrame(
         frameMain, text="Entrenamiento")
     frameEntranamiento.place(relx=.29, rely=.02, width=770, height=283)
-
-    frameEntranamientoGrafica = tk.Frame(
-        frameEntranamiento)
-    frameEntranamientoGrafica.place(relx=0, rely=0, width=600, height=263)
-
-    frameEntranamientoTabla = tk.Frame(
-        frameEntranamiento)
-    frameEntranamientoTabla.place(relx=.787, rely=0, width=161, height=263)
 
     frameSimulacion = tk.LabelFrame(
         frameMain, text="Vs Error")
