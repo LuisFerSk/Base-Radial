@@ -82,7 +82,6 @@ def Event_btnEntrenar():
     btnInicializar['state'] = tk.NORMAL
 
 
-
 def Event_btnGuardar():
     SaveResults(entrenar.Ejercicio, 'out', entrenar.Entradas, entrenar.Salidas,
                 entrenar.BasesRadiales, cobBoxFuncionSalida.get(
@@ -124,7 +123,7 @@ if __name__ == '__main__':
     entErrorMaximo.place(relx=.5, rely=.01)
     entErrorMaximo.insert(0, 0.001)
 
-    tk.Label(frameConfig, text="Número de neuronas:",
+    tk.Label(frameConfig, text="Número centros radiales:",
              ).place(relx=.01, rely=.2)
     entNeuronas = tk.Entry(frameConfig, width=23)
     entNeuronas.place(relx=.5, rely=.2)
@@ -136,7 +135,7 @@ if __name__ == '__main__':
     cobBoxFuncionSalida["values"] = [
         'BASERADIAL', 'GAUSSIANA']
     cobBoxFuncionSalida.place(relx=.5, rely=.4)
-    cobBoxFuncionSalida.insert(0, "BASERADIAL")
+    cobBoxFuncionSalida.insert(0, "BASERADIAL",)
 
     btnInicializar = tk.Button(frameConfig, text="Inicializar red", state=tk.DISABLED, command=Event_btnInicializar,
                                relief="flat", overrelief="flat", bg="#e3e3e3", borderwidth=2)
@@ -175,7 +174,7 @@ if __name__ == '__main__':
     frameEntranamientoTabla.place(relx=.787, rely=0, width=161, height=263)
 
     frameSimulacion = tk.LabelFrame(
-        frameMain, text="Simulación")
+        frameMain, text="Vs Error")
     frameSimulacion.place(relx=.29, rely=.513, width=770, height=283)
 
     root.mainloop()
