@@ -7,10 +7,10 @@ class Neuron:
         self.Salidas = salidas
         self.Entradas = entradas
         self.Ejercicio = ejercicio
-        self.vsErrores = [[0.1, 0.1]]
+        self.matrizErrores = [[0.1, 0.1]]
         self.BasesRadiales = basesRadiales
 
-    def Train(self, error_maximo, funcionActivacion):
+    def Train(self, errorMaximo, funcionActivacion):
         distanciasEuclidianas = []
         for entradas in self.Entradas:
             distanciasEuclidianas.append(
@@ -18,17 +18,17 @@ class Neuron:
 
         activacion = ActivationFunction(
             funcionActivacion, distanciasEuclidianas)
-        matriz = ones((len(activacion), 1))
-        matriz = append(matriz, activacion, axis=1)
-        interp = linalg.lstsq(matriz, self.Salidas, rcond=-1)[0]
+        matrizInterpolacion = ones((len(activacion), 1))
+        matrizInterpolacion = append(matrizInterpolacion, activacion, axis=1)
+        interp = linalg.lstsq(matrizInterpolacion, self.Salidas, rcond=-1)[0]
 
-        salidas = CalculateOutput(matriz, interp)
+        salidas = CalculateOutput(matrizInterpolacion, interp)
 
         (errorLineal, entrenamiento) = LinearError(
             self.Salidas, salidas)
 
         errorG = ErrorG(errorLineal)
 
-        self.vsErrores.append([error_maximo, errorG])
+        self.matrizErrores.append([errorMaximo, errorG])
 
-        return (errorG <= error_maximo, entrenamiento, self.vsErrores, matriz, errorG)
+        return (errorG <= errorMaximo, entrenamiento, self.matrizErrores, matrizInterpolacion, errorG)
