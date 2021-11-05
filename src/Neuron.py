@@ -1,36 +1,33 @@
 from numpy import linalg, append
-from pandas.core.frame import DataFrame
-from Funtions import Funtions
-import tkinter as tk
-import tkinter.ttk as ttk
+from Funtions import CalculateOutput, LinearError, ActivationFunction, EuclideanDistance, ErrorG
+
 
 class Neuron:
-
-    # CONSTRUCTOR
     def __init__(self, ejercicio, entradas, salidas, basesRadiales):
-        self.functions = Funtions()
-        self.Ejercicio = ejercicio
-        self.Entradas = entradas
         self.Salidas = salidas
-        self.BasesRadiales = basesRadiales
+        self.Entradas = entradas
+        self.Ejercicio = ejercicio
         self.vsErrores = [[0.1, 0.1]]
+        self.BasesRadiales = basesRadiales
 
-    def Entrenar(self, error_maximo, funcionActivacion):
-
+    def Train(self, error_maximo, funcionActivacion):
         distanciasEuclidianas = []
         for entradas in self.Entradas:
-            distanciasEuclidianas.append(self.functions.DistanciaEuclidiana(entradas, self.BasesRadiales))
+            distanciasEuclidianas.append(
+                EuclideanDistance(entradas, self.BasesRadiales))
 
-        activacion = self.functions.FuncionActivacion(funcionActivacion, distanciasEuclidianas)
+        activacion = ActivationFunction(
+            funcionActivacion, distanciasEuclidianas)
         matriz = [[1], [1], [1], [1]]
         matriz = append(matriz, activacion, axis=1)
         interp = linalg.lstsq(matriz, self.Salidas, rcond=-1)[0]
-        
-        salidas = self.functions.CalcularSalida(matriz, interp)
 
-        (errorLineal, entrenamiento) = self.functions.ErrorLineal(self.Salidas, salidas)
+        salidas = CalculateOutput(matriz, interp)
 
-        errorG = self.functions.ErrorG(errorLineal)
+        (errorLineal, entrenamiento) = LinearError(
+            self.Salidas, salidas)
+
+        errorG = ErrorG(errorLineal)
 
         self.vsErrores.append([error_maximo, errorG])
 
