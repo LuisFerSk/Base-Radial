@@ -10,7 +10,7 @@ def Graph(frame, data, flag=True, ):
     handles = axis.plot([fila[0] for fila in data], 'oy', [fila[1] for fila in data],
                         '*c') if flag else axis.plot([fila[0] for fila in data], '-y',  [fila[1] for fila in data], '-c')
 
-    labels = ['YD', 'YR'] if flag else ['YD', 'YR']
+    labels = ['YD', 'YR'] if flag else ['Error General', 'Error']
 
     fig.legend(handles, labels)
 

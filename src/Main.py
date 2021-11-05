@@ -133,7 +133,7 @@ if __name__ == '__main__':
              ).place(relx=.01, rely=.4)
     cobBoxFuncionSalida = ttk.Combobox(frameConfig)
     cobBoxFuncionSalida["values"] = [
-        'BASERADIAL', 'GAUSSIANA']
+        'BASERADIAL']
     cobBoxFuncionSalida.place(relx=.5, rely=.4)
     cobBoxFuncionSalida.insert(0, "BASERADIAL",)
 
